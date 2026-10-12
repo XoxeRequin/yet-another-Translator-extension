@@ -1,0 +1,7 @@
+{
+  "name": "Dark Translate - Firefox MV3 Extension",
+  "description": "Modern dark-mode glassmorphic Firefox extension for instant text translation and audio pronunciation, with interactive live simulator and production-ready source package.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+

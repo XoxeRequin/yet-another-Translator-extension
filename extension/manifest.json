@@ -1,0 +1,51 @@
+{
+  "manifest_version": 3,
+  "name": "Dark Translate - Quick Web Translator",
+  "version": "1.0.0",
+  "description": "Modern dark glassmorphic inline translator for Firefox. Highlight text on any page for instant translation, dictionary definitions, and pronunciation.",
+  "author": "Dark Translate Extension",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "dark-translate@firefox.extension",
+      "strict_min_version": "109.0"
+    }
+  },
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://translate.googleapis.com/*",
+    "<all_urls>"
+  ],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "styles.css",
+        "icons/icon-48.svg"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Dark Translate Settings",
+    "default_icon": {
+      "48": "icons/icon-48.svg"
+    }
+  },
+  "icons": {
+    "48": "icons/icon-48.svg",
+    "96": "icons/icon-48.svg"
+  }
+}

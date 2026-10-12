@@ -1,0 +1,472 @@
+/* ==========================================================================
+   Dark Translate - Modern Glassmorphic Extension Styles
+   Scoped entirely within Open Shadow DOM root
+   ========================================================================== */
+
+:host {
+  all: initial;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  z-index: 2147483647; /* Maximum z-index to stay above all host website layers */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: #e2e8f0;
+  font-size: 13px;
+  line-height: 1.5;
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* --------------------------------------------------------------------------
+   1. Floating Trigger Button
+   -------------------------------------------------------------------------- */
+.dt-trigger {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(20, 20, 26, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(59, 130, 246, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2147483647;
+  transform-origin: center;
+  animation: dt-pop-in 0.18s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transition: transform 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.dt-trigger:hover {
+  transform: scale(1.12);
+  background: rgba(28, 30, 40, 0.98);
+  border-color: rgba(96, 165, 250, 0.6);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5), 0 0 12px rgba(59, 130, 246, 0.5);
+}
+
+.dt-trigger:active {
+  transform: scale(0.96);
+}
+
+.dt-trigger svg {
+  width: 17px;
+  height: 17px;
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   2. Floating Translation Modal / Popup
+   -------------------------------------------------------------------------- */
+.dt-modal {
+  position: absolute;
+  width: 360px;
+  max-width: calc(100vw - 32px);
+  background: rgba(20, 20, 26, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  box-shadow: 0 20px 48px -12px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  color: #e2e8f0;
+  z-index: 2147483647;
+  overflow: hidden;
+  animation: dt-modal-in 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transform-origin: top left;
+  user-select: text;
+}
+
+/* Modal Header */
+.dt-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.dt-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #93c5fd;
+  letter-spacing: 0.2px;
+}
+
+.dt-brand svg {
+  width: 15px;
+  height: 15px;
+}
+
+.dt-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dt-icon-btn {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.dt-icon-btn:hover {
+  color: #f1f5f9;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.dt-icon-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* --------------------------------------------------------------------------
+   3. Language Selection Controls
+   -------------------------------------------------------------------------- */
+.dt-lang-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: rgba(0, 0, 0, 0.25);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.dt-select-wrapper {
+  position: relative;
+  flex: 1;
+}
+
+.dt-select {
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #f8fafc;
+  padding: 6px 22px 6px 9px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.15s ease;
+}
+
+.dt-select:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.dt-select:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25);
+}
+
+.dt-select option {
+  background: #181920;
+  color: #e2e8f0;
+}
+
+.dt-select-arrow {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #64748b;
+  width: 10px;
+  height: 10px;
+}
+
+.dt-swap-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #94a3b8;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dt-swap-btn:hover {
+  background: rgba(59, 130, 246, 0.15);
+  border-color: rgba(59, 130, 246, 0.4);
+  color: #93c5fd;
+  transform: rotate(180deg);
+}
+
+.dt-swap-btn svg {
+  width: 13px;
+  height: 13px;
+}
+
+/* --------------------------------------------------------------------------
+   4. Content Areas (Source & Translated)
+   -------------------------------------------------------------------------- */
+.dt-content {
+  padding: 12px 14px;
+  max-height: 380px;
+  overflow-y: auto;
+}
+
+.dt-content::-webkit-scrollbar {
+  width: 5px;
+}
+.dt-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+.dt-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+}
+
+/* Source Box */
+.dt-source-box {
+  margin-bottom: 12px;
+}
+
+.dt-box-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.dt-meta-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.dt-meta-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.dt-source-text {
+  font-size: 13px;
+  color: #94a3b8;
+  line-height: 1.55;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 8px 10px;
+  border-radius: 8px;
+  max-height: 90px;
+  overflow-y: auto;
+  word-break: break-word;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+/* Hairline Divider */
+.dt-divider {
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.02));
+  margin: 10px 0 12px 0;
+}
+
+/* Target Translation Output Box */
+.dt-target-box {
+  position: relative;
+}
+
+.dt-target-text {
+  font-size: 14.5px;
+  font-weight: 500;
+  color: #ffffff;
+  line-height: 1.55;
+  word-break: break-word;
+  white-space: pre-wrap;
+  margin-bottom: 8px;
+}
+
+.dt-romanization {
+  font-size: 12px;
+  color: #93c5fd;
+  font-style: italic;
+  margin-bottom: 8px;
+  padding: 3px 6px;
+  background: rgba(59, 130, 246, 0.1);
+  border-radius: 6px;
+  display: inline-block;
+}
+
+/* Dictionary Definitions */
+.dt-dict {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.dt-dict-item {
+  margin-bottom: 6px;
+}
+
+.dt-dict-pos {
+  font-size: 11px;
+  font-weight: 600;
+  color: #38bdf8;
+  font-style: italic;
+}
+
+.dt-dict-terms {
+  font-size: 12px;
+  color: #cbd5e1;
+  margin-left: 6px;
+}
+
+/* --------------------------------------------------------------------------
+   5. Footer Action Bar
+   -------------------------------------------------------------------------- */
+.dt-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 8px;
+  margin-top: 6px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.dt-footer-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.dt-action-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #cbd5e1;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.dt-action-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+.dt-action-btn svg {
+  width: 13px;
+  height: 13px;
+}
+
+.dt-action-btn.active {
+  background: rgba(59, 130, 246, 0.2);
+  border-color: rgba(59, 130, 246, 0.4);
+  color: #93c5fd;
+}
+
+.dt-google-link {
+  color: #64748b;
+  text-decoration: none;
+  font-size: 11px;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  transition: color 0.15s ease;
+}
+
+.dt-google-link:hover {
+  color: #94a3b8;
+}
+
+/* --------------------------------------------------------------------------
+   6. Loading Skeleton & Spinners
+   -------------------------------------------------------------------------- */
+.dt-loading-skeleton {
+  padding: 6px 0;
+}
+
+.dt-skeleton-line {
+  height: 14px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.04) 25%, rgba(255, 255, 255, 0.12) 50%, rgba(255, 255, 255, 0.04) 75%);
+  background-size: 200% 100%;
+  animation: dt-shimmer 1.5s infinite;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+.dt-skeleton-line.short {
+  width: 60%;
+}
+
+.dt-error-msg {
+  color: #f87171;
+  font-size: 12px;
+  padding: 8px 10px;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 6px;
+}
+
+/* --------------------------------------------------------------------------
+   7. Keyframe Animations
+   -------------------------------------------------------------------------- */
+@keyframes dt-pop-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes dt-modal-in {
+  0% {
+    opacity: 0;
+    transform: translateY(4px) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes dt-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes dt-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
